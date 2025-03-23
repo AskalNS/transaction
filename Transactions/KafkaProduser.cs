@@ -14,13 +14,13 @@ namespace Transactions
             BootstrapServers = "localhost:9092" // Адрес Kafka брокера
         };
 
-        public static void Send(string response)
+        public static void Send(string message, string topic)
         {
             using var producer = new ProducerBuilder<Null, string>(config).Build();
 
             try
             {
-                producer.ProduceAsync("my-topic", new Message<Null, string>{Value = response });
+                producer.ProduceAsync("topic", new Message<Null, string>{Value = message });
 
             }
             catch (Exception ex)

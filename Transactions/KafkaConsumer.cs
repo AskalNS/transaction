@@ -91,17 +91,24 @@ namespace Transactions
                     result = 1011
                 };
                 string json = JsonConvert.SerializeObject(response);
-                KafkaProduser.Send(json);
+                KafkaProduser.Send(json, "");
             }
             else
             {
                 var response = new InvestmentResponseDTO
                 {
                     id = investmentDTO.id,
+                    InvestorId = investmentDTO.InvestorId,
+                    InvestorFio = investmentDTO.InvestorFio,
+                    InvestorIin = investmentDTO.InvestorIin,
+                    BusinessId = investmentDTO.BusinessId,
+                    BusinessFio = investmentDTO.BusinessFio,
+                    BusinessBin = investmentDTO.BusinessBin,
+                    Amount = investmentDTO.amount,
                     result = 1011
                 };
                 string json = JsonConvert.SerializeObject(response);
-                KafkaProduser.Send(json);
+                KafkaProduser.Send(json, "");
             }
 
 
