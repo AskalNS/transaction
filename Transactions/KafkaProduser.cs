@@ -1,4 +1,5 @@
 ﻿using Confluent.Kafka;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,17 +17,18 @@ namespace Transactions
 
         public static void Send(string message, string topic)
         {
-            using var producer = new ProducerBuilder<Null, string>(config).Build();
 
-            try
+            var config = new ProducerConfig
             {
-                producer.ProduceAsync("topic", new Message<Null, string>{Value = message });
+                BootstrapServers = "localhost:9092"
+            };
 
-            }
-            catch (Exception ex)
+            using (var producer = new ProducerBuilder<string, string>(config).Build())
             {
-                Console.WriteLine($"Ошибка отправки: {ex.Message}");
+                producer.Produce(topic, new Message<string, string> { Key = "1", Value = message });
+                producer.Flush(TimeSpan.FromSeconds(5));
             }
+
         }
     }
 }

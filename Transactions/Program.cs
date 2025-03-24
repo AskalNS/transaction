@@ -11,7 +11,9 @@ Console.CancelKeyPress += (_, e) => {
     cts.Cancel();
 };
 
-var consumer1 = new KafkaConsumer("InvestorPayment", "consumer-group-1", "localhost:9092");
+var consumer1 = new KafkaConsumerInvestment("InvestorPayment", "consumer-group-1", "localhost:9092");
+var consumer2 = new KafkaConsumerRefill("BusinessRefill", "consumer-group-1", "localhost:9092");
+var consumer3 = new KafkaConsumerTransaction("InvestorTransaction", "consumer-group-1", "localhost:9092");
 
 await Task.WhenAll(
     consumer1.StartConsuming(cts.Token)

@@ -1,20 +1,20 @@
-﻿using System;
+﻿
 using System.Threading;
 using System.Threading.Tasks;
 using Confluent.Kafka;
 using Newtonsoft.Json;
 using Transactions.models;
 using Transactions.SharedService;
+using WebApplication6.Models;
 
 namespace Transactions
 {
-
-    public class KafkaConsumer
+    class KafkaConsumerRefill
     {
         private readonly string _topic;
         private readonly ConsumerConfig _config;
 
-        public KafkaConsumer(string topic, string groupId, string bootstrapServers)
+        public KafkaConsumerRefill(string topic, string groupId, string bootstrapServers)
         {
             _topic = topic;
             _config = new ConsumerConfig
@@ -28,6 +28,8 @@ namespace Transactions
 
         public async Task StartConsuming(CancellationToken cancellationToken)
         {
+            await Task.Yield();
+
             using var consumer = new ConsumerBuilder<Ignore, string>(_config).Build();
             consumer.Subscribe(_topic);
 
@@ -65,54 +67,49 @@ namespace Transactions
             await Task.Delay(500);
             Console.WriteLine($"Processed message: {message}");
 
-            InvestmentDTO investmentDTO = JsonConvert.DeserializeObject<InvestmentDTO>(message);
-            Console.WriteLine($"Объект: Name = {investmentDTO.amount}, Age = {investmentDTO.cvv}");
+            RefillDTO refillDTO = JsonConvert.DeserializeObject<RefillDTO>(message);
 
 
-            if (MasterCard.Pay(investmentDTO.number, investmentDTO.date, investmentDTO.cvv))
+            if (MasterCard.Pay(refillDTO.number, refillDTO.date, refillDTO.cvv, refillDTO.amount))
             {
                 using (var db = new MyDbContext())
                 {
-                    db.Investment.Add(new Investment
+                    db.Refill.Add(new Refill
                     {
-                        InvestorId = investmentDTO.InvestorId,
-                        InvestorFio = investmentDTO.InvestorFio,
-                        InvestorIin = investmentDTO.InvestorIin,
-                        BusinessId = investmentDTO.BusinessId,
-                        BusinessFio = investmentDTO.BusinessFio,
-                        BusinessIin = investmentDTO.BusinessBin,
-                        Amount = investmentDTO.amount
+                        BusinessId = refillDTO.BusinessId,
+                        CreatedAt = refillDTO.CreatedAt.UtcDateTime,
+                        OrderId = refillDTO.OrderId,
+                        Amount = refillDTO.amount
                     });
                     db.SaveChanges();
                 }
-                var response = new InvestmentResponseDTO
+                var response = new RefillDTOResponse
                 {
-                    id = investmentDTO.id,
-                    result = 1011
+                    BusinessId = refillDTO.BusinessId,
+                    OrderId = refillDTO.OrderId,
+                    CreatedAt = refillDTO.CreatedAt,
+                    Amount = refillDTO.amount,
+                    Result = 1
                 };
                 string json = JsonConvert.SerializeObject(response);
-                KafkaProduser.Send(json, "");
+                KafkaProduser.Send(json, "BusinessRefillResponse");
             }
             else
             {
-                var response = new InvestmentResponseDTO
+                var response = new RefillDTOResponse
                 {
-                    id = investmentDTO.id,
-                    InvestorId = investmentDTO.InvestorId,
-                    InvestorFio = investmentDTO.InvestorFio,
-                    InvestorIin = investmentDTO.InvestorIin,
-                    BusinessId = investmentDTO.BusinessId,
-                    BusinessFio = investmentDTO.BusinessFio,
-                    BusinessBin = investmentDTO.BusinessBin,
-                    Amount = investmentDTO.amount,
-                    result = 1011
+                    BusinessId = refillDTO.BusinessId,
+                    OrderId = refillDTO.OrderId,
+                    CreatedAt = refillDTO.CreatedAt,
+                    Amount = refillDTO.amount,
+                    Result = 0
                 };
                 string json = JsonConvert.SerializeObject(response);
-                KafkaProduser.Send(json, "");
+                KafkaProduser.Send(json, "BusinessRefillResponse");
             }
 
 
-            
+
         }
     }
 }

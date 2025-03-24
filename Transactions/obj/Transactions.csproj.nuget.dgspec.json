@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Pc\\Desktop\\Transactions\\Transactions\\Transactions\\Transactions.csproj": {}
+    "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\Transactions.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Pc\\Desktop\\Transactions\\Transactions\\Transactions\\Transactions.csproj": {
+    "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\Transactions.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Pc\\Desktop\\Transactions\\Transactions\\Transactions\\Transactions.csproj",
+        "projectUniqueName": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\Transactions.csproj",
         "projectName": "Transactions",
-        "projectPath": "C:\\Users\\Pc\\Desktop\\Transactions\\Transactions\\Transactions\\Transactions.csproj",
+        "projectPath": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\Transactions.csproj",
         "packagesPath": "C:\\Users\\Pc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Pc\\Desktop\\Transactions\\Transactions\\Transactions\\obj\\",
+        "outputPath": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

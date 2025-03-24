@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "iMxruX5dr4k=",
+  "dgSpecHash": "SlT/XgfcWxQ=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Pc\\Desktop\\Transactions\\Transactions\\Transactions\\Transactions.csproj",
+  "projectFilePath": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\Transactions.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Pc\\.nuget\\packages\\confluent.kafka\\2.8.0\\confluent.kafka.2.8.0.nupkg.sha512",
     "C:\\Users\\Pc\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

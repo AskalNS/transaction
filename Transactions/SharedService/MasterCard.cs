@@ -8,7 +8,11 @@ namespace Transactions.SharedService
 {
     class MasterCard
     {
-        public static bool Pay(string number, string date, string cvv)
+        public static bool Pay(string number, string date, string cvv, decimal amount)
+        {
+            return true;
+        }
+        public static bool GetProfit(string number, decimal amount)
         {
             return true;
         }
