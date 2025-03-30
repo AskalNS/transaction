@@ -5,6 +5,7 @@ using Confluent.Kafka;
 using Newtonsoft.Json;
 using Transactions.models;
 using Transactions.SharedService;
+using WebApplication6.Models;
 
 namespace Transactions
 {
@@ -30,6 +31,7 @@ namespace Transactions
         {
             await Task.Yield();
             using var consumer = new ConsumerBuilder<Ignore, string>(_config).Build();
+            Console.WriteLine("333333333333333333333333333");
             consumer.Subscribe(_topic);
 
             try
@@ -67,29 +69,30 @@ namespace Transactions
             Console.WriteLine($"Processed message: {message}");
 
             InvestmentDTO investmentDTO = JsonConvert.DeserializeObject<InvestmentDTO>(message);
-            Console.WriteLine($"Объект: Name = {investmentDTO.amount}, Age = {investmentDTO.cvv}");
+            Console.WriteLine($"Объект: Name = {investmentDTO.Amount}, Age = {investmentDTO.cvv}");
 
 
-            if (MasterCard.Pay(investmentDTO.number, investmentDTO.date, investmentDTO.cvv, investmentDTO.amount))
+            if (MasterCard.Pay(investmentDTO.number, investmentDTO.date, investmentDTO.cvv, investmentDTO.Amount))
             {
-                using (var db = new MyDbContext())
-                {
-                    db.Investment.Add(new Investment
-                    {
-                        InvestorId = investmentDTO.InvestorId,
-                        InvestorFio = investmentDTO.InvestorFio,
-                        InvestorIin = investmentDTO.InvestorIin,
-                        BusinessId = investmentDTO.BusinessId,
-                        BusinessFio = investmentDTO.BusinessFio,
-                        BusinessIin = investmentDTO.BusinessBin,
-                        Amount = investmentDTO.amount
-                    });
-                    db.SaveChanges();
-                }
+                //using (var db = new MyDbContext())
+                //{
+                //    db.Investment.Add(new Investment()
+                //    {
+                //        InvestorId = investmentDTO.InvestorId,
+                //        OrderId = investmentDTO.OrderId,
+                //        Amount = investmentDTO.Amount,
+                //        CreatedAt = DateTimeOffset.Now
+                //    });
+                //    await Task.Delay(3000);
+                //    db.SaveChanges();
+                //}
                 var response = new InvestmentResponseDTO
                 {
-                    id = investmentDTO.id,
-                    result = 1011
+                    InvestorId = investmentDTO.InvestorId,
+                    OrderId = investmentDTO.OrderId,
+                    Amount = investmentDTO.Amount,
+                    CreatedAt = DateTimeOffset.Now,
+                    result = 1
                 };
                 string json = JsonConvert.SerializeObject(response);
                 KafkaProduser.Send(json, "InvestorPaymentResponse");
@@ -98,22 +101,18 @@ namespace Transactions
             {
                 var response = new InvestmentResponseDTO
                 {
-                    id = investmentDTO.id,
                     InvestorId = investmentDTO.InvestorId,
-                    InvestorFio = investmentDTO.InvestorFio,
-                    InvestorIin = investmentDTO.InvestorIin,
-                    BusinessId = investmentDTO.BusinessId,
-                    BusinessFio = investmentDTO.BusinessFio,
-                    BusinessBin = investmentDTO.BusinessBin,
-                    Amount = investmentDTO.amount,
-                    result = 1011
+                    OrderId = investmentDTO.OrderId,
+                    Amount = investmentDTO.Amount,
+                    CreatedAt = DateTimeOffset.Now,
+                    result = 1
                 };
                 string json = JsonConvert.SerializeObject(response);
                 KafkaProduser.Send(json, "");
             }
 
 
-            
+
         }
     }
 }

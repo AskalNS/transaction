@@ -9,15 +9,11 @@ namespace Transactions.models
 {
     public class InvestmentDTO
     {
-        public string id;
-        public int InvestorId;
-        public string InvestorFio;
-        public string InvestorIin;
-        public int BusinessId;
-        public string BusinessFio;
-        public string BusinessBin;
+        public int InvestorId { get; set; }
+        public int OrderId { get; set; }
+        public decimal Amount { get; set; }
+        public DateTimeOffset CreatedAt { get; set; }
         public string number;
-        public decimal amount;
         public string date;
         public string cvv;
     }

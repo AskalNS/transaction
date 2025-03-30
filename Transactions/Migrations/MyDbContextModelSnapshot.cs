@@ -22,6 +22,31 @@ namespace Transactions.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("Transactions.models.Investing", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("numeric");
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("InvestorId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Investing");
+                });
+
             modelBuilder.Entity("Transactions.models.Investment", b =>
                 {
                     b.Property<int>("Id")
@@ -33,27 +58,14 @@ namespace Transactions.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("numeric");
 
-                    b.Property<string>("BusinessFio")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("BusinessId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("BusinessIin")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("InvestorFio")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("InvestorId")
                         .HasColumnType("integer");
 
-                    b.Property<string>("InvestorIin")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("OrderId")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -68,8 +80,8 @@ namespace Transactions.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<double>("Amount")
-                        .HasColumnType("double precision");
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("numeric");
 
                     b.Property<int>("BusinessId")
                         .HasColumnType("integer");
@@ -93,8 +105,8 @@ namespace Transactions.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<double>("Amount")
-                        .HasColumnType("double precision");
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("numeric");
 
                     b.Property<DateTimeOffset>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
