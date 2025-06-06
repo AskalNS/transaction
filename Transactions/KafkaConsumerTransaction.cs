@@ -62,55 +62,59 @@ namespace Transactions
 
         private static async Task ProcessMessageAsync(string message)
         {
-            await Task.Delay(500);
-            Console.WriteLine($"Processed message: {message}");
-
-            TransactionDTO transactionDTO = JsonConvert.DeserializeObject<TransactionDTO>(message);
-
-
-            if (MasterCard.GetProfit(transactionDTO.cardNumber, transactionDTO.Amount))
+            try
             {
-                using (var db = new MyDbContext())
+                await Task.Delay(500);
+                Console.WriteLine($"Processed message: {message}");
+
+                TransactionDTO transactionDTO = JsonConvert.DeserializeObject<TransactionDTO>(message);
+
+
+                if (MasterCard.GetProfit(transactionDTO.cardNumber, transactionDTO.Amount))
                 {
-                    db.Transaction.Add(new Transaction
+                    using (var db = new MyDbContext())
+                    {
+                        db.Transaction.Add(new Transaction
+                        {
+                            InvestorId = transactionDTO.InvestorId,
+                            OrderId = transactionDTO.OrderId,
+                            Amount = transactionDTO.Amount,
+                            CreatedAt = transactionDTO.CreatedAt.UtcDateTime,
+                            TrasactionType = transactionDTO.TrasactionType
+                        });
+                        db.SaveChanges();
+                    }
+                    var response = new TransactionDTOResponse
                     {
                         InvestorId = transactionDTO.InvestorId,
                         OrderId = transactionDTO.OrderId,
                         Amount = transactionDTO.Amount,
-                        CreatedAt = transactionDTO.CreatedAt.UtcDateTime,
-                        TrasactionType = transactionDTO.TrasactionType
-                    });
-                    db.SaveChanges();
+                        CreatedAt = transactionDTO.CreatedAt,
+                        TrasactionType = transactionDTO.TrasactionType,
+                        Result = 1
+                    };
+                    string json = JsonConvert.SerializeObject(response);
+                    KafkaProduser.Send(json, "InvestorTransactionResponse");
                 }
-                var response = new TransactionDTOResponse
+                else
                 {
-                    InvestorId = transactionDTO.InvestorId,
-                    OrderId = transactionDTO.OrderId,
-                    Amount = transactionDTO.Amount,
-                    CreatedAt = transactionDTO.CreatedAt,
-                    TrasactionType = transactionDTO.TrasactionType,
-                    Result = 1
-                };
-                string json = JsonConvert.SerializeObject(response);
-                KafkaProduser.Send(json, "InvestorTransactionResponse");
+                    var response = new TransactionDTOResponse
+                    {
+                        InvestorId = transactionDTO.InvestorId,
+                        OrderId = transactionDTO.OrderId,
+                        Amount = transactionDTO.Amount,
+                        CreatedAt = transactionDTO.CreatedAt,
+                        TrasactionType = transactionDTO.TrasactionType,
+                        Result = 0
+                    };
+                    string json = JsonConvert.SerializeObject(response);
+                    KafkaProduser.Send(json, "InvestorTransactionResponse");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                var response = new TransactionDTOResponse
-                {
-                    InvestorId = transactionDTO.InvestorId,
-                    OrderId = transactionDTO.OrderId,
-                    Amount = transactionDTO.Amount,
-                    CreatedAt = transactionDTO.CreatedAt,
-                    TrasactionType = transactionDTO.TrasactionType,
-                    Result = 0
-                };
-                string json = JsonConvert.SerializeObject(response);
-                KafkaProduser.Send(json, "InvestorTransactionResponse");
+                Console.WriteLine(ex);
             }
-
-
-
         }
     }
 }

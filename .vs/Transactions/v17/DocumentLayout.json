@@ -3,20 +3,40 @@
   "WorkspaceRootPath": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{90A090A6-FD18-42D9-9D70-2C25021F8264}|Transactions\\Transactions.csproj|c:\\users\\pc\\desktop\\gittransaction\\transaction\\transactions\\kafkaconsumerrefill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{90A090A6-FD18-42D9-9D70-2C25021F8264}|Transactions\\Transactions.csproj|solutionrelative:transactions\\kafkaconsumerrefill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{90A090A6-FD18-42D9-9D70-2C25021F8264}|Transactions\\Transactions.csproj|c:\\users\\pc\\desktop\\gittransaction\\transaction\\transactions\\migrations\\20250330024713_initialcreate_01.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90A090A6-FD18-42D9-9D70-2C25021F8264}|Transactions\\Transactions.csproj|solutionrelative:transactions\\migrations\\20250330024713_initialcreate_01.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{90A090A6-FD18-42D9-9D70-2C25021F8264}|Transactions\\Transactions.csproj|c:\\users\\pc\\desktop\\gittransaction\\transaction\\transactions\\kafkaconsumertransaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{90A090A6-FD18-42D9-9D70-2C25021F8264}|Transactions\\Transactions.csproj|solutionrelative:transactions\\kafkaconsumertransaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{90A090A6-FD18-42D9-9D70-2C25021F8264}|Transactions\\Transactions.csproj|c:\\users\\pc\\desktop\\gittransaction\\transaction\\transactions\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{90A090A6-FD18-42D9-9D70-2C25021F8264}|Transactions\\Transactions.csproj|solutionrelative:transactions\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{90A090A6-FD18-42D9-9D70-2C25021F8264}|Transactions\\Transactions.csproj|c:\\users\\pc\\desktop\\gittransaction\\transaction\\transactions\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{90A090A6-FD18-42D9-9D70-2C25021F8264}|Transactions\\Transactions.csproj|solutionrelative:transactions\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{90A090A6-FD18-42D9-9D70-2C25021F8264}|Transactions\\Transactions.csproj|c:\\users\\pc\\desktop\\gittransaction\\transaction\\transactions\\kafkaproduser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90A090A6-FD18-42D9-9D70-2C25021F8264}|Transactions\\Transactions.csproj|solutionrelative:transactions\\kafkaproduser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{90A090A6-FD18-42D9-9D70-2C25021F8264}|Transactions\\Transactions.csproj|c:\\users\\pc\\desktop\\gittransaction\\transaction\\transactions\\kafkaconsumerinvestment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{90A090A6-FD18-42D9-9D70-2C25021F8264}|Transactions\\Transactions.csproj|solutionrelative:transactions\\kafkaconsumerinvestment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90A090A6-FD18-42D9-9D70-2C25021F8264}|Transactions\\Transactions.csproj|c:\\users\\pc\\desktop\\gittransaction\\transaction\\transactions\\kafkaconsumertransaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90A090A6-FD18-42D9-9D70-2C25021F8264}|Transactions\\Transactions.csproj|solutionrelative:transactions\\kafkaconsumertransaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90A090A6-FD18-42D9-9D70-2C25021F8264}|Transactions\\Transactions.csproj|c:\\users\\pc\\desktop\\gittransaction\\transaction\\transactions\\kafkaconsumerrefill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90A090A6-FD18-42D9-9D70-2C25021F8264}|Transactions\\Transactions.csproj|solutionrelative:transactions\\kafkaconsumerrefill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90A090A6-FD18-42D9-9D70-2C25021F8264}|Transactions\\Transactions.csproj|c:\\users\\pc\\desktop\\gittransaction\\transaction\\transactions\\[build||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{90A090A6-FD18-42D9-9D70-2C25021F8264}|Transactions\\Transactions.csproj|solutionrelative:transactions\\[build||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90A090A6-FD18-42D9-9D70-2C25021F8264}|Transactions\\Transactions.csproj|c:\\users\\pc\\desktop\\gittransaction\\transaction\\transactions\\error||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{90A090A6-FD18-42D9-9D70-2C25021F8264}|Transactions\\Transactions.csproj|solutionrelative:transactions\\error||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{90A090A6-FD18-42D9-9D70-2C25021F8264}|Transactions\\Transactions.csproj|c:\\users\\pc\\desktop\\gittransaction\\transaction\\transactions\\models\\mydbcontext .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -59,10 +79,6 @@
       "RelativeMoniker": "D:0:0:{90A090A6-FD18-42D9-9D70-2C25021F8264}|Transactions\\Transactions.csproj|solutionrelative:transactions\\sharedservice\\mastercard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{90A090A6-FD18-42D9-9D70-2C25021F8264}|Transactions\\Transactions.csproj|c:\\users\\pc\\desktop\\gittransaction\\transaction\\transactions\\kafkaproduser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{90A090A6-FD18-42D9-9D70-2C25021F8264}|Transactions\\Transactions.csproj|solutionrelative:transactions\\kafkaproduser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{90A090A6-FD18-42D9-9D70-2C25021F8264}|Transactions\\Transactions.csproj|c:\\users\\pc\\desktop\\gittransaction\\transaction\\transactions\\models\\transactiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{90A090A6-FD18-42D9-9D70-2C25021F8264}|Transactions\\Transactions.csproj|solutionrelative:transactions\\models\\transactiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -71,12 +87,8 @@
       "RelativeMoniker": "D:0:0:{90A090A6-FD18-42D9-9D70-2C25021F8264}|Transactions\\Transactions.csproj|solutionrelative:transactions\\transactions.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\Migrations\\20250330024713_InitialCreate_01.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Transactions\\Migrations\\20250330024713_InitialCreate_01.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\models\\Investment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Transactions\\models\\Investment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{90A090A6-FD18-42D9-9D70-2C25021F8264}|Transactions\\Transactions.csproj|c:\\users\\pc\\desktop\\gittransaction\\transaction\\transactions\\models\\investment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90A090A6-FD18-42D9-9D70-2C25021F8264}|Transactions\\Transactions.csproj|solutionrelative:transactions\\models\\investment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -86,11 +98,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 1,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\Dockerfile",
+              "RelativeDocumentMoniker": "Transactions\\Dockerfile",
+              "ToolTip": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\Dockerfile",
+              "RelativeToolTip": "Transactions\\Dockerfile",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-06-06T14:49:52.283Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "[build",
+              "DocumentMoniker": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\[build",
+              "RelativeDocumentMoniker": "Transactions\\[build",
+              "ToolTip": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\[build",
+              "RelativeToolTip": "Transactions\\[build",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-06-06T14:50:20.866Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ERROR",
+              "DocumentMoniker": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\ERROR",
+              "RelativeDocumentMoniker": "Transactions\\ERROR",
+              "ToolTip": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\ERROR",
+              "RelativeToolTip": "Transactions\\ERROR",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-06-06T14:50:13.514Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
               "Title": "Investment.cs",
               "DocumentMoniker": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\models\\Investment.cs",
               "RelativeDocumentMoniker": "Transactions\\models\\Investment.cs",
@@ -102,7 +153,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 10,
               "Title": "Investing.cs",
               "DocumentMoniker": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\models\\Investing.cs",
               "RelativeDocumentMoniker": "Transactions\\models\\Investing.cs",
@@ -114,7 +165,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 9,
               "Title": "MyDbContext .cs",
               "DocumentMoniker": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\models\\MyDbContext .cs",
               "RelativeDocumentMoniker": "Transactions\\models\\MyDbContext .cs",
@@ -126,39 +177,39 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "KafkaConsumerTransaction.cs",
               "DocumentMoniker": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\KafkaConsumerTransaction.cs",
               "RelativeDocumentMoniker": "Transactions\\KafkaConsumerTransaction.cs",
               "ToolTip": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\KafkaConsumerTransaction.cs",
               "RelativeToolTip": "Transactions\\KafkaConsumerTransaction.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAASwD8AAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAFYAAAAAAAAAAAAgwHUAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-24T12:25:24.837Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "KafkaConsumerInvestment.cs",
               "DocumentMoniker": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\KafkaConsumerInvestment.cs",
               "RelativeDocumentMoniker": "Transactions\\KafkaConsumerInvestment.cs",
               "ToolTip": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\KafkaConsumerInvestment.cs",
               "RelativeToolTip": "Transactions\\KafkaConsumerInvestment.cs",
-              "ViewState": "AgIAAEQAAAAAAAAAAAAgwGIAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAABkAAAAAAAAAAIAwwB0AAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-18T03:56:11.789Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
               "Title": "KafkaConsumerRefill.cs",
               "DocumentMoniker": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\KafkaConsumerRefill.cs",
               "RelativeDocumentMoniker": "Transactions\\KafkaConsumerRefill.cs",
               "ToolTip": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\KafkaConsumerRefill.cs",
               "RelativeToolTip": "Transactions\\KafkaConsumerRefill.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAASwEIAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAAAFMAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-24T12:12:13.168Z",
               "EditorCaption": ""
@@ -171,26 +222,27 @@
               "RelativeDocumentMoniker": "Transactions\\Program.cs",
               "ToolTip": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\Program.cs",
               "RelativeToolTip": "Transactions\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAACEAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-18T03:55:22.748Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 0,
               "Title": "20250330024713_InitialCreate_01.cs",
               "DocumentMoniker": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\Migrations\\20250330024713_InitialCreate_01.cs",
               "RelativeDocumentMoniker": "Transactions\\Migrations\\20250330024713_InitialCreate_01.cs",
               "ToolTip": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\Migrations\\20250330024713_InitialCreate_01.cs",
               "RelativeToolTip": "Transactions\\Migrations\\20250330024713_InitialCreate_01.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAmwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAA6wAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-30T02:47:41.699Z"
+              "WhenOpened": "2025-03-30T02:47:41.699Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 11,
               "Title": "Refill.cs",
               "DocumentMoniker": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\models\\Refill.cs",
               "RelativeDocumentMoniker": "Transactions\\models\\Refill.cs",
@@ -202,7 +254,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 12,
               "Title": "InvestmentDTO.cs",
               "DocumentMoniker": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\models\\InvestmentDTO.cs",
               "RelativeDocumentMoniker": "Transactions\\models\\InvestmentDTO.cs",
@@ -214,7 +266,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 13,
               "Title": "RefillDTOResponse.cs",
               "DocumentMoniker": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\models\\RefillDTOResponse.cs",
               "RelativeDocumentMoniker": "Transactions\\models\\RefillDTOResponse.cs",
@@ -226,7 +278,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 14,
               "Title": "InvestmentResponseDTO.cs",
               "DocumentMoniker": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\models\\InvestmentResponseDTO.cs",
               "RelativeDocumentMoniker": "Transactions\\models\\InvestmentResponseDTO.cs",
@@ -238,7 +290,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 15,
               "Title": "TransactionDTOResponse.cs",
               "DocumentMoniker": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\models\\TransactionDTOResponse.cs",
               "RelativeDocumentMoniker": "Transactions\\models\\TransactionDTOResponse.cs",
@@ -250,7 +302,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 17,
               "Title": "RefillDTO.cs",
               "DocumentMoniker": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\models\\RefillDTO.cs",
               "RelativeDocumentMoniker": "Transactions\\models\\RefillDTO.cs",
@@ -262,7 +314,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 16,
               "Title": "Transaction.cs",
               "DocumentMoniker": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\models\\Transaction.cs",
               "RelativeDocumentMoniker": "Transactions\\models\\Transaction.cs",
@@ -274,7 +326,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 18,
               "Title": "MasterCard.cs",
               "DocumentMoniker": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\SharedService\\MasterCard.cs",
               "RelativeDocumentMoniker": "Transactions\\SharedService\\MasterCard.cs",
@@ -286,19 +338,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 3,
               "Title": "KafkaProduser.cs",
               "DocumentMoniker": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\KafkaProduser.cs",
               "RelativeDocumentMoniker": "Transactions\\KafkaProduser.cs",
               "ToolTip": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\KafkaProduser.cs",
               "RelativeToolTip": "Transactions\\KafkaProduser.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAwB8AAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAABYAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-19T17:39:29.639Z"
+              "WhenOpened": "2025-03-19T17:39:29.639Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 19,
               "Title": "TransactionDTO.cs",
               "DocumentMoniker": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\models\\TransactionDTO.cs",
               "RelativeDocumentMoniker": "Transactions\\models\\TransactionDTO.cs",
@@ -310,7 +363,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 20,
               "Title": "Transactions.csproj",
               "DocumentMoniker": "C:\\Users\\Pc\\Desktop\\GitTransaction\\transaction\\Transactions\\Transactions.csproj",
               "RelativeDocumentMoniker": "Transactions\\Transactions.csproj",

@@ -65,50 +65,45 @@ namespace Transactions
 
         private static async Task ProcessMessageAsync(string message)
         {
-            await Task.Delay(500);
-            Console.WriteLine($"Processed message: {message}");
-
-            InvestmentDTO investmentDTO = JsonConvert.DeserializeObject<InvestmentDTO>(message);
-            Console.WriteLine($"Объект: Name = {investmentDTO.Amount}, Age = {investmentDTO.cvv}");
-
-
-            if (MasterCard.Pay(investmentDTO.number, investmentDTO.date, investmentDTO.cvv, investmentDTO.Amount))
+            try
             {
-                //using (var db = new MyDbContext())
-                //{
-                //    db.Investment.Add(new Investment()
-                //    {
-                //        InvestorId = investmentDTO.InvestorId,
-                //        OrderId = investmentDTO.OrderId,
-                //        Amount = investmentDTO.Amount,
-                //        CreatedAt = DateTimeOffset.Now
-                //    });
-                //    await Task.Delay(3000);
-                //    db.SaveChanges();
-                //}
-                var response = new InvestmentResponseDTO
+                await Task.Delay(500);
+                Console.WriteLine($"Processed message: {message}");
+
+                InvestmentDTO investmentDTO = JsonConvert.DeserializeObject<InvestmentDTO>(message);
+                Console.WriteLine($"Объект: Name = {investmentDTO.Amount}, Age = {investmentDTO.cvv}");
+
+
+                if (MasterCard.Pay(investmentDTO.number, investmentDTO.date, investmentDTO.cvv, investmentDTO.Amount))
                 {
-                    InvestorId = investmentDTO.InvestorId,
-                    OrderId = investmentDTO.OrderId,
-                    Amount = investmentDTO.Amount,
-                    CreatedAt = DateTimeOffset.Now,
-                    result = 1
-                };
-                string json = JsonConvert.SerializeObject(response);
-                KafkaProduser.Send(json, "InvestorPaymentResponse");
+                    var response = new InvestmentResponseDTO
+                    {
+                        InvestorId = investmentDTO.InvestorId,
+                        OrderId = investmentDTO.OrderId,
+                        Amount = investmentDTO.Amount,
+                        CreatedAt = DateTimeOffset.Now,
+                        result = 1
+                    };
+                    string json = JsonConvert.SerializeObject(response);
+                    KafkaProduser.Send(json, "InvestorPaymentResponse");
+                }
+                else
+                {
+                    var response = new InvestmentResponseDTO
+                    {
+                        InvestorId = investmentDTO.InvestorId,
+                        OrderId = investmentDTO.OrderId,
+                        Amount = investmentDTO.Amount,
+                        CreatedAt = DateTimeOffset.Now,
+                        result = 1
+                    };
+                    string json = JsonConvert.SerializeObject(response);
+                    KafkaProduser.Send(json, "");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                var response = new InvestmentResponseDTO
-                {
-                    InvestorId = investmentDTO.InvestorId,
-                    OrderId = investmentDTO.OrderId,
-                    Amount = investmentDTO.Amount,
-                    CreatedAt = DateTimeOffset.Now,
-                    result = 1
-                };
-                string json = JsonConvert.SerializeObject(response);
-                KafkaProduser.Send(json, "");
+                Console.WriteLine(ex);
             }
 
 
@@ -116,3 +111,16 @@ namespace Transactions
         }
     }
 }
+
+//using (var db = new MyDbContext())
+//{
+//    db.Investment.Add(new Investment()
+//    {
+//        InvestorId = investmentDTO.InvestorId,
+//        OrderId = investmentDTO.OrderId,
+//        Amount = investmentDTO.Amount,
+//        CreatedAt = DateTimeOffset.Now
+//    });
+//    await Task.Delay(3000);
+//    db.SaveChanges();
+//}

@@ -65,48 +65,55 @@ namespace Transactions
 
         private static async Task ProcessMessageAsync(string message)
         {
-            await Task.Delay(500);
-            Console.WriteLine($"Processed message: {message}");
-
-            RefillDTO refillDTO = JsonConvert.DeserializeObject<RefillDTO>(message);
-
-
-            if (MasterCard.Pay(refillDTO.number, refillDTO.date, refillDTO.cvv, refillDTO.amount))
+            try
             {
-                using (var db = new MyDbContext())
+                await Task.Delay(500);
+                Console.WriteLine($"Processed message: {message}");
+
+                RefillDTO refillDTO = JsonConvert.DeserializeObject<RefillDTO>(message);
+
+
+                if (MasterCard.Pay(refillDTO.number, refillDTO.date, refillDTO.cvv, refillDTO.amount))
                 {
-                    db.Refill.Add(new Refill
+                    using (var db = new MyDbContext())
+                    {
+                        db.Refill.Add(new Refill
+                        {
+                            BusinessId = refillDTO.BusinessId,
+                            CreatedAt = refillDTO.CreatedAt.UtcDateTime,
+                            OrderId = refillDTO.OrderId,
+                            Amount = refillDTO.amount
+                        });
+                        db.SaveChanges();
+                    }
+                    var response = new RefillDTOResponse
                     {
                         BusinessId = refillDTO.BusinessId,
-                        CreatedAt = refillDTO.CreatedAt.UtcDateTime,
                         OrderId = refillDTO.OrderId,
-                        Amount = refillDTO.amount
-                    });
-                    db.SaveChanges();
+                        CreatedAt = refillDTO.CreatedAt,
+                        Amount = refillDTO.amount,
+                        Result = 1
+                    };
+                    string json = JsonConvert.SerializeObject(response);
+                    KafkaProduser.Send(json, "BusinessRefillResponse");
                 }
-                var response = new RefillDTOResponse
+                else
                 {
-                    BusinessId = refillDTO.BusinessId,
-                    OrderId = refillDTO.OrderId,
-                    CreatedAt = refillDTO.CreatedAt,
-                    Amount = refillDTO.amount,
-                    Result = 1
-                };
-                string json = JsonConvert.SerializeObject(response);
-                KafkaProduser.Send(json, "BusinessRefillResponse");
+                    var response = new RefillDTOResponse
+                    {
+                        BusinessId = refillDTO.BusinessId,
+                        OrderId = refillDTO.OrderId,
+                        CreatedAt = refillDTO.CreatedAt,
+                        Amount = refillDTO.amount,
+                        Result = 0
+                    };
+                    string json = JsonConvert.SerializeObject(response);
+                    KafkaProduser.Send(json, "BusinessRefillResponse");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                var response = new RefillDTOResponse
-                {
-                    BusinessId = refillDTO.BusinessId,
-                    OrderId = refillDTO.OrderId,
-                    CreatedAt = refillDTO.CreatedAt,
-                    Amount = refillDTO.amount,
-                    Result = 0
-                };
-                string json = JsonConvert.SerializeObject(response);
-                KafkaProduser.Send(json, "BusinessRefillResponse");
+                Console.WriteLine(ex);
             }
 
 
