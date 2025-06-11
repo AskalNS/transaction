@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using Transactions.models;
 using Transactions.SharedService;
 using WebApplication6.Models;
+using Microsoft.Extensions.Logging;
 
 namespace Transactions
 {
@@ -10,6 +11,7 @@ namespace Transactions
     {
         private readonly string _topic;
         private readonly ConsumerConfig _config;
+        private readonly ILogger<KafkaConsumerTransaction> _logger;
 
         public KafkaConsumerTransaction(string topic, string groupId, string bootstrapServers)
         {
@@ -21,6 +23,14 @@ namespace Transactions
                 AutoOffsetReset = AutoOffsetReset.Earliest,
                 EnableAutoCommit = false
             };
+
+            // Логгер создаётся вручную
+            using var loggerFactory = LoggerFactory.Create(builder =>
+            {
+                builder.AddConsole();
+                builder.SetMinimumLevel(LogLevel.Information);
+            });
+            _logger = loggerFactory.CreateLogger<KafkaConsumerTransaction>();
         }
 
         public async Task StartConsuming(CancellationToken cancellationToken)
@@ -28,7 +38,7 @@ namespace Transactions
             await Task.Yield();
 
             using var consumer = new ConsumerBuilder<Ignore, string>(_config).Build();
-            Console.WriteLine("333333333333333333333333333");
+            _logger.LogInformation("Kafka consumer started and subscribed to topic: {Topic}", _topic);
             consumer.Subscribe(_topic);
 
             try
@@ -38,52 +48,55 @@ namespace Transactions
                     try
                     {
                         var consumeResult = consumer.Consume(cancellationToken);
-                        Console.WriteLine($"Received message: {consumeResult.Message.Value} at {consumeResult.TopicPartitionOffset}");
+                        _logger.LogInformation("Received message: {Message} at {Offset}", consumeResult.Message.Value, consumeResult.TopicPartitionOffset);
 
                         await ProcessMessageAsync(consumeResult.Message.Value);
 
                         consumer.Commit(consumeResult);
+                        _logger.LogInformation("Message committed.");
                     }
                     catch (OperationCanceledException)
                     {
+                        _logger.LogWarning("Consuming was cancelled.");
                         break;
                     }
                     catch (ConsumeException e)
                     {
-                        Console.WriteLine($"Kafka consume error: {e.Error.Reason}");
+                        _logger.LogError("Kafka consume error: {Error}", e.Error.Reason);
                     }
                 }
             }
             finally
             {
                 consumer.Close();
+                _logger.LogInformation("Kafka consumer closed.");
             }
         }
 
-        private static async Task ProcessMessageAsync(string message)
+        private async Task ProcessMessageAsync(string message)
         {
             try
             {
-                await Task.Delay(500);
-                Console.WriteLine($"Processed message: {message}");
+                await Task.Delay(500); // simulate processing delay
+                _logger.LogInformation("Processing message: {Message}", message);
 
-                TransactionDTO transactionDTO = JsonConvert.DeserializeObject<TransactionDTO>(message);
-
+                var transactionDTO = JsonConvert.DeserializeObject<TransactionDTO>(message);
 
                 if (MasterCard.GetProfit(transactionDTO.cardNumber, transactionDTO.Amount))
                 {
-                    using (var db = new MyDbContext())
+                    using var db = new MyDbContext();
+                    db.Transaction.Add(new Transaction
                     {
-                        db.Transaction.Add(new Transaction
-                        {
-                            InvestorId = transactionDTO.InvestorId,
-                            OrderId = transactionDTO.OrderId,
-                            Amount = transactionDTO.Amount,
-                            CreatedAt = transactionDTO.CreatedAt.UtcDateTime,
-                            TrasactionType = transactionDTO.TrasactionType
-                        });
-                        db.SaveChanges();
-                    }
+                        InvestorId = transactionDTO.InvestorId,
+                        OrderId = transactionDTO.OrderId,
+                        Amount = transactionDTO.Amount,
+                        CreatedAt = transactionDTO.CreatedAt.UtcDateTime,
+                        TrasactionType = transactionDTO.TrasactionType
+                    });
+                    db.SaveChanges();
+
+                    _logger.LogInformation("Transaction saved for OrderId: {OrderId}", transactionDTO.OrderId);
+
                     var response = new TransactionDTOResponse
                     {
                         InvestorId = transactionDTO.InvestorId,
@@ -93,8 +106,10 @@ namespace Transactions
                         TrasactionType = transactionDTO.TrasactionType,
                         Result = 1
                     };
+
                     string json = JsonConvert.SerializeObject(response);
                     KafkaProduser.Send(json, "InvestorTransactionResponse");
+                    _logger.LogInformation("Success response sent.");
                 }
                 else
                 {
@@ -107,13 +122,15 @@ namespace Transactions
                         TrasactionType = transactionDTO.TrasactionType,
                         Result = 0
                     };
+
                     string json = JsonConvert.SerializeObject(response);
                     KafkaProduser.Send(json, "InvestorTransactionResponse");
+                    _logger.LogWarning("Transaction rejected, response sent.");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                _logger.LogError(ex, "Error processing message: {Message}", message);
             }
         }
     }
