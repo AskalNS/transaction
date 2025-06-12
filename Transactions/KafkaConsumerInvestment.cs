@@ -9,7 +9,6 @@ using WebApplication6.Models;
 
 namespace Transactions
 {
-
     public class KafkaConsumerInvestment
     {
         private readonly string _topic;
@@ -31,7 +30,7 @@ namespace Transactions
         {
             await Task.Yield();
             using var consumer = new ConsumerBuilder<Ignore, string>(_config).Build();
-            Console.WriteLine("333333333333333333333333333");
+            Console.WriteLine("Started consuming topic: " + _topic);
             consumer.Subscribe(_topic);
 
             try
@@ -71,56 +70,43 @@ namespace Transactions
                 Console.WriteLine($"Processed message: {message}");
 
                 InvestmentDTO investmentDTO = JsonConvert.DeserializeObject<InvestmentDTO>(message);
-                Console.WriteLine($"Объект: Name = {investmentDTO.Amount}, Age = {investmentDTO.cvv}");
+                Console.WriteLine($"Объект: Amount = {investmentDTO.Amount}");
 
+                bool success = MasterCard.Pay(investmentDTO.number, investmentDTO.date, investmentDTO.cvv, investmentDTO.Amount);
 
-                if (MasterCard.Pay(investmentDTO.number, investmentDTO.date, investmentDTO.cvv, investmentDTO.Amount))
+                var response = new InvestmentResponseDTO
                 {
-                    var response = new InvestmentResponseDTO
-                    {
-                        InvestorId = investmentDTO.InvestorId,
-                        OrderId = investmentDTO.OrderId,
-                        Amount = investmentDTO.Amount,
-                        CreatedAt = DateTimeOffset.Now,
-                        result = 1
-                    };
-                    string json = JsonConvert.SerializeObject(response);
-                    KafkaProduser.Send(json, "InvestorPaymentResponse");
-                }
-                else
-                {
-                    var response = new InvestmentResponseDTO
-                    {
-                        InvestorId = investmentDTO.InvestorId,
-                        OrderId = investmentDTO.OrderId,
-                        Amount = investmentDTO.Amount,
-                        CreatedAt = DateTimeOffset.Now,
-                        result = 1
-                    };
-                    string json = JsonConvert.SerializeObject(response);
-                    KafkaProduser.Send(json, "");
-                }
+                    InvestorId = investmentDTO.InvestorId,
+                    OrderId = investmentDTO.OrderId,
+                    Amount = investmentDTO.Amount,
+                    CreatedAt = DateTimeOffset.Now,
+                    result = success ? 1 : 0
+                };
+
+                string json = JsonConvert.SerializeObject(response);
+                KafkaProduser.Send(json, "InvestorPaymentResponse");
+
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                Console.WriteLine($"[ERROR] {ex}");
             }
-
-
-
         }
     }
 }
 
-//using (var db = new MyDbContext())
+//if (success)
 //{
-//    db.Investment.Add(new Investment()
+//    using (var db = new MyDbContext())
 //    {
-//        InvestorId = investmentDTO.InvestorId,
-//        OrderId = investmentDTO.OrderId,
-//        Amount = investmentDTO.Amount,
-//        CreatedAt = DateTimeOffset.Now
-//    });
-//    await Task.Delay(3000);
-//    db.SaveChanges();
+//        db.Investment.Add(new Investment
+//        {
+//            InvestorId = investmentDTO.InvestorId,
+//            OrderId = investmentDTO.OrderId,
+//            Amount = investmentDTO.Amount,
+//            CreatedAt = DateTimeOffset.Now
+//        });
+//        await Task.Delay(3000); // если нужен таймер
+//        db.SaveChanges();
+//    }
 //}

@@ -287,3 +287,8 @@ C:\Users\Pc\Desktop\GitTransaction\transaction\Transactions\obj\Debug\net8.0\ref
 C:\Users\Pc\Desktop\GitTransaction\transaction\Transactions\obj\Debug\net8.0\Transactions.pdb
 C:\Users\Pc\Desktop\GitTransaction\transaction\Transactions\obj\Debug\net8.0\Transactions.genruntimeconfig.cache
 C:\Users\Pc\Desktop\GitTransaction\transaction\Transactions\obj\Debug\net8.0\ref\Transactions.dll
+C:\Users\Pc\Desktop\GitTransaction\transaction\Transactions\bin\Debug\net8.0\Microsoft.Extensions.Configuration.dll
+C:\Users\Pc\Desktop\GitTransaction\transaction\Transactions\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Binder.dll
+C:\Users\Pc\Desktop\GitTransaction\transaction\Transactions\bin\Debug\net8.0\Microsoft.Extensions.Logging.Configuration.dll
+C:\Users\Pc\Desktop\GitTransaction\transaction\Transactions\bin\Debug\net8.0\Microsoft.Extensions.Logging.Console.dll
+C:\Users\Pc\Desktop\GitTransaction\transaction\Transactions\bin\Debug\net8.0\Microsoft.Extensions.Options.ConfigurationExtensions.dll

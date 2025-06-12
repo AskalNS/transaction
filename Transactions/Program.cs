@@ -13,9 +13,9 @@ Console.CancelKeyPress += (_, e) => {
 };
 Console.WriteLine("Hello, World!2");
 
-var consumer1 = new KafkaConsumerInvestment("InvestorPayment", "consumer-group-1", "kafka:9092");
-var consumer2 = new KafkaConsumerRefill("BusinessRefill", "consumer-group-1", "kafka:9092");
-var consumer3 = new KafkaConsumerTransaction("InvestorTransaction", "consumer-group-1", "kafka:9092");
+var consumer1 = new KafkaConsumerInvestment("InvestorPayment", "consumer-group-1", "localhost:9092");
+var consumer2 = new KafkaConsumerRefill("BusinessRefill", "consumer-group-1", "localhost:9092");
+var consumer3 = new KafkaConsumerTransaction("InvestorTransaction", "consumer-group-1", "localhost:9092");
 Console.WriteLine("Hello, World!3");
 var thread1 = new Thread(() => consumer1.StartConsuming(cts.Token)) { IsBackground = true };
 var thread2 = new Thread(() => consumer2.StartConsuming(cts.Token)) { IsBackground = true };

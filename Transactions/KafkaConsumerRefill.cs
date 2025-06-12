@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using Confluent.Kafka;
@@ -13,6 +14,7 @@ namespace Transactions
     {
         private readonly string _topic;
         private readonly ConsumerConfig _config;
+        private static readonly TraceSource Logger = new TraceSource("KafkaConsumerRefill");
 
         public KafkaConsumerRefill(string topic, string groupId, string bootstrapServers)
         {
@@ -24,6 +26,9 @@ namespace Transactions
                 AutoOffsetReset = AutoOffsetReset.Earliest,
                 EnableAutoCommit = false
             };
+
+            // Включение консольного логирования (опционально)
+            Trace.Listeners.Add(new ConsoleTraceListener());
         }
 
         public async Task StartConsuming(CancellationToken cancellationToken)
@@ -31,7 +36,7 @@ namespace Transactions
             await Task.Yield();
 
             using var consumer = new ConsumerBuilder<Ignore, string>(_config).Build();
-            Console.WriteLine("333333333333333333333333333");
+            Logger.TraceEvent(TraceEventType.Information, 0, "Consumer started. Subscribing to topic: " + _topic);
             consumer.Subscribe(_topic);
 
             try
@@ -41,25 +46,28 @@ namespace Transactions
                     try
                     {
                         var consumeResult = consumer.Consume(cancellationToken);
-                        Console.WriteLine($"Received message: {consumeResult.Message.Value} at {consumeResult.TopicPartitionOffset}");
+                        Logger.TraceEvent(TraceEventType.Information, 0, $"Received message: {consumeResult.Message.Value} at {consumeResult.TopicPartitionOffset}");
 
                         await ProcessMessageAsync(consumeResult.Message.Value);
 
                         consumer.Commit(consumeResult);
+                        Logger.TraceEvent(TraceEventType.Information, 0, "Message committed");
                     }
                     catch (OperationCanceledException)
                     {
+                        Logger.TraceEvent(TraceEventType.Warning, 0, "Operation canceled");
                         break;
                     }
                     catch (ConsumeException e)
                     {
-                        Console.WriteLine($"Kafka consume error: {e.Error.Reason}");
+                        Logger.TraceEvent(TraceEventType.Error, 0, $"Kafka consume error: {e.Error.Reason}");
                     }
                 }
             }
             finally
             {
                 consumer.Close();
+                Logger.TraceEvent(TraceEventType.Information, 0, "Consumer closed");
             }
         }
 
@@ -68,10 +76,9 @@ namespace Transactions
             try
             {
                 await Task.Delay(500);
-                Console.WriteLine($"Processed message: {message}");
+                Logger.TraceEvent(TraceEventType.Verbose, 0, $"Processing message: {message}");
 
                 RefillDTO refillDTO = JsonConvert.DeserializeObject<RefillDTO>(message);
-
 
                 if (MasterCard.Pay(refillDTO.number, refillDTO.date, refillDTO.cvv, refillDTO.amount))
                 {
@@ -86,6 +93,9 @@ namespace Transactions
                         });
                         db.SaveChanges();
                     }
+
+                    Logger.TraceEvent(TraceEventType.Information, 0, $"Refill successful for BusinessId={refillDTO.BusinessId}, Amount={refillDTO.amount}");
+
                     var response = new RefillDTOResponse
                     {
                         BusinessId = refillDTO.BusinessId,
@@ -99,6 +109,8 @@ namespace Transactions
                 }
                 else
                 {
+                    Logger.TraceEvent(TraceEventType.Warning, 0, $"Refill failed for BusinessId={refillDTO.BusinessId}, Amount={refillDTO.amount}");
+
                     var response = new RefillDTOResponse
                     {
                         BusinessId = refillDTO.BusinessId,
@@ -113,11 +125,8 @@ namespace Transactions
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                Logger.TraceEvent(TraceEventType.Error, 0, $"Exception while processing message: {ex}");
             }
-
-
-
         }
     }
 }

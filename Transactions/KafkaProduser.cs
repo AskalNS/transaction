@@ -20,7 +20,7 @@ namespace Transactions
 
             var config = new ProducerConfig
             {
-                BootstrapServers = "kafka:9092"
+                BootstrapServers = "localhost:9092"
             };
 
             using (var producer = new ProducerBuilder<string, string>(config).Build())
